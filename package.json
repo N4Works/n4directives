@@ -1,0 +1,25 @@
+{
+  "name": "n4directives",
+  "version": "0.0.1",
+  "description": "AngularJS directives from N4Works",
+  "main": "n4app.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiagor87/n4directives.git"
+  },
+  "keywords": [
+    "n4",
+    "n4works",
+    "directives",
+    "angular"
+  ],
+  "author": "Tiago de Carvalho Resende <tiagor87@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tiagor87/n4directives/issues"
+  },
+  "homepage": "https://github.com/tiagor87/n4directives"
+}

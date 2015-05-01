@@ -1,0 +1,24 @@
+{
+  "name": "n4directives",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tiagor87/n4directives",
+  "authors": [
+    "Tiago Resende <tiagor87@gmail.com>"
+  ],
+  "description": "AngularJS directives from N4Works",
+  "main": "n4app.js",
+  "keywords": [
+    "n4",
+    "n4works",
+    "directives",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

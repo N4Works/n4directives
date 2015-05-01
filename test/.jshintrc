@@ -1,0 +1,12 @@
+{
+  "globals": [
+    "describe",
+    "beforeEach",
+    "module",
+    "inject",
+    "spyOn",
+    "angular",
+    "it",
+    "expect"
+  ]
+}
