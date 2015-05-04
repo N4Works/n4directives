@@ -8,11 +8,13 @@
     karma = require('karma').server;
 
   gulp.task('test', function (done) {
+    /*jslint nomen: true */
     karma.start({
       configFile: __dirname + '/karma.conf.js',
       singleRun: true,
       browsers: ['PhantomJS']
     }, done);
+    /*jslint nomen: false */
   });
 
   gulp.task('coverage', ['test'], function (done) {
