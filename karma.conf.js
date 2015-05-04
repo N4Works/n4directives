@@ -16,7 +16,7 @@
       ],
       exclude: [],
       preprocessors: {
-        'n4-directives': 'coverage'
+        'src/**/*.js': 'coverage'
       },
       coverageReporter: {
         type: 'lcov',
