@@ -5,4 +5,5 @@
     'n4Directives.numberInput',
     'n4Directives.notifications'
   ]);
+
 }(window.angular));
