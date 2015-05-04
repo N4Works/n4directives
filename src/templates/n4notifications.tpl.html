@@ -1,0 +1,29 @@
+<script type="text/ng-template" id="success.html">
+  <div class="notification success">
+    <div class="text" data-ng-bind="notification.message">
+    </div>
+    <div class="actions">
+      <a class="secondary" href="" data-ng-if="notification.secondaryButtonText" data-ng-bind="notification.secondaryButtonText" data-ng-click="notification.callback(notification.secondaryButtonText)"></a>
+      <a class="primary" href="" data-ng-bind="notification.primaryButtonText" data-ng-click="notification.callback(notification.primaryButtonText)"></a>
+    </div>
+  </div>
+</script>
+<script type="text/ng-template" id="alert.html">
+  <div class="notification alert">
+    <div class="text" data-ng-bind="notification.message">
+    </div>
+    <div class="actions">
+      <a class="secondary" href="" data-ng-if="notification.secondaryButtonText" data-ng-bind="notification.secondaryButtonText" data-ng-click="notification.callback(notification.secondaryButtonText)"></a>
+      <a class="primary" href="" data-ng-bind="notification.primaryButtonText" data-ng-click="notification.callback(notification.primaryButtonText)"></a>
+    </div>
+  </div>
+</script>
+<script type="text/ng-template" id="information.html">
+  <div class="notification information">
+    <div class="text" data-ng-bind="notification.message">
+    </div>
+    <div class="actions">
+      <a class="primary" href="" data-ng-bind="notification.primaryButtonText" data-ng-click="notification.callback(notification.primaryButtonText)"></a>
+    </div>
+  </div>
+</script>
