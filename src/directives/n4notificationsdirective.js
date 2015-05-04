@@ -46,7 +46,6 @@
       '$timeout',
       function ($compile, $templateCache) {
         return {
-          require: '^n4Notifications',
           restrict: 'E',
           replace: true,
           link: function (scope, element, attributes) {

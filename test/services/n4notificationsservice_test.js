@@ -1,4 +1,4 @@
-(function () {
+(function (jasmine) {
   'use strict';
 
   /*global describe, beforeEach, module, inject, spyOn, angular, it, expect*/
@@ -109,6 +109,19 @@
         notification.callback();
         expect(service.notifications.length).toBe(0);
       });
+
+      it('Should be call the callback passed as parameter', function () {
+        var callback = jasmine.createSpy(),
+          notification;
+        expect(service.notifications.length).toBe(0);
+        service.notify('success.html', 'message', 'primaryButton', 'secondaryButton', callback);
+
+        expect(service.notifications.length).toBe(1);
+        notification = service.notifications[0];
+        notification.callback();
+        expect(service.notifications.length).toBe(0);
+        expect(callback).toHaveBeenCalled();
+      });
     });
   });
-}());
+}(window.jasmine));
