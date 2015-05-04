@@ -15,7 +15,7 @@
     }));
 
     describe('Creation', function () {
-      it('Should be able to create directive from an element', function () {
+      it('Should be able to create directive by element', function () {
         var element = angular.element('<n4-number-input data-ng-model="value"></n4-number-input>');
         $compile(element)($scope);
         $scope.$apply();
@@ -24,7 +24,7 @@
         expect(element[0].tagName).toBe('INPUT');
       });
 
-      it('Should be able to create directive from a class', function () {
+      it('Should be able to create directive by class', function () {
         var element = angular.element('<input class="n4-number-input" data-ng-model="value">');
         $compile(element)($scope);
         $scope.$apply();
@@ -33,7 +33,7 @@
         expect(element[0].tagName).toBe('INPUT');
       });
 
-      it('Should be able to create directive from an attribute', function () {
+      it('Should be able to create directive by attribute', function () {
         var element = angular.element('<input n4-number-input="" data-ng-model="value">');
         $compile(element)($scope);
         $scope.$apply();

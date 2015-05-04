@@ -18,6 +18,7 @@
           '  </div>',
           '</div>'
         ].join(''));
+
         $templateCache.put('alert.html', [
           '<div class="notification alert">',
           '  <div class="text" data-ng-bind="notification.message"></div>',
@@ -26,7 +27,8 @@
           '    <a class="primary" href="" data-ng-bind="notification.primaryButtonText" data-ng-click="notification.callback(notification.primaryButtonText)"></a>',
           '  </div>',
           '</div>'
-        ]);
+        ].join(''));
+
         $templateCache.put('information.html', [
           '<div class="notification information">',
           '  <div class="text" data-ng-bind="notification.message">',
@@ -35,9 +37,7 @@
           '    <a class="primary" href="" data-ng-bind="notification.primaryButtonText" data-ng-click="notification.callback(notification.primaryButtonText)"></a>',
           '  </div>',
           '</div>'
-        ]);
-
-        $('body').append('<n4-notifications></n4-notifications>');
+        ].join(''));
       }
     ])
     .directive('n4Notification', [
