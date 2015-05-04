@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict';
 
-  angular.module('n4Directives.notifications')
+  angular.module('n4Directives.notifications.models', [])
     .factory('N4NotificationModel', function () {
       var N4NotificationModel = function (notification) {
         this.message = null;

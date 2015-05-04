@@ -1,7 +1,10 @@
-(function (angular) {
+(function (angular, $) {
   'use strict';
 
-  angular.module('n4Directives.notifications', [])
+  angular.module('n4Directives.notifications', [
+    'n4Directives.notifications.services',
+    'n4Directives.notifications.models'
+  ])
     .run([
       '$templateCache',
       function ($templateCache) {
@@ -33,10 +36,25 @@
           '  </div>',
           '</div>'
         ]);
-        angular.element('body')
-          .append('<n4-notifications></n4-notifications>');
+
+        $('body').append('<n4-notifications></n4-notifications>');
       }
     ])
+    .directive('n4Notification', [
+      '$compile',
+      '$templateCache',
+      '$timeout',
+      function ($compile, $templateCache) {
+        return {
+          require: '^n4Notifications',
+          restrict: 'E',
+          replace: true,
+          link: function (scope, element, attributes) {
+            var $element = $compile($templateCache.get(attributes.template).trim())(scope);
+            element.append($element);
+          }
+        };
+      }])
     .directive('n4Notifications', [
       'n4NotificationsService',
       function (service) {
@@ -54,4 +72,4 @@
           }
         };
       }]);
-}(window.angular));
+}(window.angular, window.jQuery));

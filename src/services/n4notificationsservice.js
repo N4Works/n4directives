@@ -1,8 +1,10 @@
 (function (angular) {
   'use strict';
 
-  angular.module('n4Directives.notifications')
-    .service('n4NotificacoesService', [
+  angular.module('n4Directives.notifications.services', [
+    'n4Directives.notifications.models'
+  ])
+    .service('n4NotificationsService', [
       'N4NotificationModel',
       function (N4NotificationModel) {
         var N4NotificationsService = function () {
@@ -26,7 +28,7 @@
               }
             }));
           },
-          notifySuccess: function (template, message, primaryButtonText, secondaryButtonText, callback) {
+          notifySuccess: function (message, primaryButtonText, secondaryButtonText, callback) {
             this.notify('success.html', message, primaryButtonText, secondaryButtonText, callback);
           },
           notifyInformation: function (message, primaryButtonText, callback) {
