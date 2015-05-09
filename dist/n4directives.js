@@ -4,10 +4,11 @@
   angular.module('n4Directives', [
     'n4Directives.numberInput',
     'n4Directives.notifications',
-    'n4Directives.customEvents'
+    'n4Directives.onBottom'
   ]);
 
 }(window.angular));
+
 (function (angular, $) {
   'use strict';
 
@@ -120,7 +121,7 @@
 (function (angular, $) {
   'use strict';
 
-  angular.module('n4Directives.customEvents', [])
+  angular.module('n4Directives.onBottom', [])
     .directive('n4OnBottom', [
       '$document',
       '$window',
@@ -132,18 +133,13 @@
             onBottom: '&n4OnBottom'
           },
           compile: function (tElement, tAttrs) {
-
-            if (!angular.isDefined(tAttrs.onWindowBottom)) {
-              tAttrs.onWindowBottom = false;
-            }
-
             return function (scope, element, attributes) {
               attributes.$observe('onWindowBottom', function (onWindow) {
                 if (/true/i.test(onWindow)) {
                   element.off('scroll');
 
                   $($window).on('scroll', function () {
-                    if ($($window).scrollTop() + $($window).height() === $($document).height()) {
+                    if (($($window).scrollTop() + $($window).height()) === $($document).height()) {
                       $timeout(scope.onBottom);
                     }
                   });
@@ -151,7 +147,7 @@
                   $($window).off('scroll');
 
                   element.on('scroll', function () {
-                    if (element.scrollTop() + element.innerHeight() >= this.scrollHeight) {
+                    if ((element.scrollTop() + element.innerHeight()) >= this.scrollHeight) {
                       $timeout(scope.onBottom);
                     }
                   });
@@ -168,6 +164,7 @@
       }]);
 
 }(window.angular, window.jQuery));
+
 (function (angular) {
   'use strict';
 
