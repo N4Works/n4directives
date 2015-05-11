@@ -13,6 +13,12 @@
       service = n4NotificationsService;
     }));
 
+    describe('Creation', function() {
+      it('Should have the right props for the instance', function() {
+        expect(angular.equals(service.notifications, [])).toBeTruthy();
+      });
+    });
+
     describe('Functionality', function () {
       it('Should be able to notify success', function () {
         expect(service.notifications.length).toBe(0);

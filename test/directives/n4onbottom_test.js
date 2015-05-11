@@ -9,13 +9,12 @@
 
     beforeEach(module('n4Directives.onBottom'));
 
-    beforeEach(inject(function (_$rootScope_, _$compile_, _$timeout_, _$window_, _$document_) {
-      $scope = _$rootScope_.$new();
-      $compile = _$compile_;
-      $timeout = _$timeout_;
-      $window = _$window_;
-      $document = _$document_;
-
+    beforeEach(inject(function ($injector) {
+      $scope = $injector.get('$rootScope').$new();
+      $compile = $injector.get('$compile');
+      $timeout = $injector.get('$timeout');
+      $window = $injector.get('$window');
+      $document = $injector.get('$document');
 
       $scope.onBottom = jasmine.createSpy();
 

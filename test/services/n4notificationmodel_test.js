@@ -13,6 +13,15 @@
         expect(angular.isDefined(notification)).toBeTruthy();
       }));
 
+      it('Should have the right values for the instance\'s props', inject(function(N4NotificationModel) {
+        var notification = new N4NotificationModel();
+
+        expect(notification.message).toBeNull();
+        expect(notification.primaryButtonText).toBeNull();
+        expect(notification.secondaryButtonText).toBeNull();
+        expect(notification.callback).toBeNull();
+      }));
+
       it('Should be able to create a model object passing an object as reference', inject(function (N4NotificationModel) {
         var callback = function () {},
           notification = new N4NotificationModel({

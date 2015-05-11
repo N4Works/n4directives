@@ -9,7 +9,7 @@
         this.secondaryButtonText = null;
         this.callback = null;
 
-        return angular.extend(this, notification);
+        angular.extend(this, notification);
       };
 
       return N4NotificationModel;
