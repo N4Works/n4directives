@@ -6,7 +6,10 @@
     "Tiago Resende <tiagor87@gmail.com>"
   ],
   "description": "AngularJS directives from N4Works",
-  "main": "n4app.js",
+  "main": [
+    "dist/n4directives.min.js",
+    "dist/n4directives.min.css"
+  ],
   "keywords": [
     "n4",
     "n4works",

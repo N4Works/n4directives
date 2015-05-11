@@ -5,7 +5,7 @@
   "main": "n4app.js",
   "scripts": {
     "test": "gulp test",
-	"test-coverage": "gulp coverage"
+    "test-coverage": "gulp coverage"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,11 @@
   "homepage": "https://github.com/tiagor87/n4directives",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
     "gulp-coveralls": "^0.1.4",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
     "jasmine-core": "^2.3.0",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.8",
