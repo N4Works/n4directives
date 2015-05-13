@@ -71,8 +71,9 @@
 
             it('Should remove any non digit value inserted on the input', function () {
                 element.val('01a2b3c4d5,6;7?8^9/');
-                element.trigger('input')
+                element.trigger('change');
                 $scope.$apply();
+                $scope.$digest();
                 expect($scope.value).toBe('0123456789');
                 expect(element.val()).toBe('0123456789');
             });
