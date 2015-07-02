@@ -49,8 +49,10 @@
                                 }
 
                                 var formmatedValue = getFormattedValue(date);
-                                controller.$setViewValue(formmatedValue);
-                                controller.$render();
+                                if (value !== formmatedValue) {
+                                    controller.$setViewValue(formmatedValue);
+                                    controller.$render();
+                                }
                                 return date;
                             };
 
