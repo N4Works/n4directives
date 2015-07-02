@@ -59,17 +59,15 @@
                                     return returnValue(new Date(value));
                                 }
 
-                                return value === 'Invalid Date' ? '' : value;
+                                return value;
                             },
                             parseValue = function (value) {
                                 var formattedValue = formatValue(value),
                                     regexp = new RegExp('^(\\d{2})/(\\d{2})/(\\d{4})$', 'gi');
-                                if (regexp.test(formattedValue)) {
-                                    var date = new Date(formattedValue.replace(regexp, '$2/$1/$3'));
-                                    return isNaN(date) ? null : date;
-                                }
 
-                                return null;
+                                return regexp.test(formattedValue)
+                                    ? new Date(formattedValue.replace(regexp, '$2/$1/$3'))
+                                    : null;
                             };
 
                         element.attr('placeholder', '00/00/0000');
