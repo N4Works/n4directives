@@ -57,8 +57,32 @@
                 $scope.$apply();
             }));
 
-            it('Should render new value to the input', function () {
+            it('Should render correctly when value is a date', function () {
                 $scope.value = new Date('01/14/2015');
+                $scope.$apply();
+                expect(element.val()).toBe('14/01/2015');
+            });
+
+            it('Should render correctly when value is a valid full date string', function () {
+                $scope.value = new Date('01/14/2015').toString();
+                $scope.$apply();
+                expect(element.val()).toBe('14/01/2015');
+            });
+
+            it('Should render correctly when value is a valid date with 2 digit year', function () {
+                $scope.value = '14/01/15';
+                $scope.$apply();
+                expect(element.val()).toBe('14/01/2015');
+            });
+
+            it('Should render correctly when value is a valid string', function () {
+                $scope.value = '14/01/2015';
+                $scope.$apply();
+                expect(element.val()).toBe('14/01/2015');
+            });
+
+            it('Should render correctly when value is a valid string without backslash', function () {
+                $scope.value = '14012015';
                 $scope.$apply();
                 expect(element.val()).toBe('14/01/2015');
             });
@@ -69,16 +93,8 @@
                 expect(element.val()).toBe('');
             });
 
-            it('Should set a Date instance on the scope', function () {
-                element.val('14/01/2015');
-                element.trigger('change');
-                $scope.$apply();
-                $scope.$digest();
-                expect($scope.value).toEqual(new Date('01/14/2015'));
-            });
-
-            it('Should set a Date instance on the scope even without any backslash', function () {
-                element.val('14/012015');
+            it('Should set a Date on the scope', function () {
+                element.val('14012015');
                 element.trigger('change');
                 $scope.$apply();
                 $scope.$digest();
@@ -102,6 +118,15 @@
                 element.trigger('change');
                 $scope.$apply();
                 $scope.$digest();
+                expect($scope.value).toEqual(null);
+            });
+
+            it('Should set only when value is complete', function () {
+                $scope.value = null;
+                $scope.$apply();
+                element.val('01012');
+                element.trigger('change');
+                $scope.$apply();
                 expect($scope.value).toEqual(null);
             });
         });
