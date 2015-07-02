@@ -127,6 +127,7 @@
                 element.val('01012');
                 element.trigger('change');
                 $scope.$apply();
+                expect(element.val()).toEqual('01012');
                 expect($scope.value).toEqual(null);
             });
         });
