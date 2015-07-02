@@ -41,16 +41,17 @@
                                     return returnValue(new Date(value));
                                 }
 
-                                return '';
+                                return value === 'Invalid Date' ? '' : value;
                             },
                             parseValue = function (value) {
-                                var formattedValue = formatValue(value);
-                                if (!formattedValue) {
-                                    return null;
+                                var formattedValue = formatValue(value),
+                                    regexp = new RegExp('^(\\d{2})/(\\d{2})/(\\d{4})$', 'gi');
+                                if (regexp.test(formattedValue)) {
+                                    var date = new Date(formattedValue.replace(regexp, '$2/$1/$3'));
+                                    return isNaN(date) ? null : date;
                                 }
 
-                                var regexp = new RegExp('^(\\d{2})/(\\d{2})/(\\d{4})$', 'gi');
-                                return new Date(formattedValue.replace(regexp, '$2/$1/$3'));
+                                return null;
                             };
 
                         element.attr('placeholder', '00/00/0000');
