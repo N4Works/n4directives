@@ -26,40 +26,50 @@
                     replace: true,
                     template: '<input type="text">',
                     link: function (scope, element, attrs, controller) {
-                        var getFormattedValue = function (value) {
-                                var date = new Date(value);
-                                if (isNaN(date)) {
+                        var formatValue = function (value) {
+                                if (!value) {
                                     return '';
                                 }
 
-                                return $filter('date')(date, 'dd/MM/yyyy');
+                                var numbers = value.replace(/\D/gi, ''),
+                                    regexp = new RegExp('^(\\d{2})(\\d{2})(\\d{2})$', 'gi'),
+                                    date,
+                                    returnValue = function (dateValue) {
+                                        return isNaN(dateValue) ? '' : $filter('date')(dateValue, 'dd/MM/yyyy');
+                                    };
+
+                                if (regexp.test(numbers)) {
+                                    date = new Date(numbers.replace(regexp, '$2/$1/' + (attrs.century || '20') + '$3'));
+                                    return returnValue(date);
+                                }
+
+                                regexp = new RegExp('^(\\d{2})(\\d{2})(\\d{4})$', 'gi');
+                                if (regexp.test(numbers)) {
+                                    date = new Date(numbers.replace(regexp, '$2/$1/$3'));
+                                    return returnValue(date);
+                                }
+
+                                regexp = new RegExp('^\\w{3} \\w{3} \\d{1,2} \\d{4} .*$', 'gi');
+                                if (regexp.test(value)) {
+                                    return returnValue(new Date(value));
+                                }
+
+                                return '';
                             },
                             parseValue = function (value) {
-                                if (!value) {
+                                var formattedValue = formatValue(value);
+                                if (!formattedValue) {
                                     return null;
                                 }
 
-                                var date = new Date(value);
-                                if (isNaN(date)) {
-                                    var digits = value.replace(/\D/g, '');
-                                    date = new Date(digits.substr(2, 2) + '/' + digits.substr(0, 2) + '/' + digits.substr(4, 4));
-                                    if (isNaN(date)) {
-                                        return null;
-                                    }
-                                }
-
-                                var formmatedValue = getFormattedValue(date);
-                                if (value !== formmatedValue) {
-                                    controller.$setViewValue(formmatedValue);
-                                    controller.$render();
-                                }
-                                return date;
+                                var regexp = new RegExp('^(\\d{2})/(\\d{2})/(\\d{4})$', 'gi');
+                                return new Date(formattedValue.replace(regexp, '$2/$1/$3'));
                             };
 
-                        element.attr('placeholder','00/00/0000');
-                        element.attr('maxlength',10);
+                        element.attr('placeholder', '00/00/0000');
+                        element.attr('maxlength', 10);
 
-                        controller.$formatters.unshift(getFormattedValue);
+                        controller.$formatters.unshift(formatValue);
                         controller.$parsers.unshift(parseValue);
                     }
                 };
