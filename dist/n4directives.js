@@ -31,13 +31,18 @@
                                     return '';
                                 }
 
-                                var numbers = value.replace(/\D/gi, ''),
-                                    regexp = new RegExp('^(\\d{2})(\\d{2})(\\d{2})$', 'gi'),
-                                    date,
+                                var numbers, regexp, date,
                                     returnValue = function (dateValue) {
                                         return isNaN(dateValue) ? '' : $filter('date')(dateValue, 'dd/MM/yyyy');
                                     };
 
+                                if (value instanceof Date) {
+                                    return returnValue(value);
+                                }
+
+                                numbers = value.replace(/\D/gi, '');
+
+                                regexp = new RegExp('^(\\d{2})(\\d{2})(\\d{2})$', 'gi');
                                 if (regexp.test(numbers)) {
                                     date = new Date(numbers.replace(regexp, '$2/$1/' + (attrs.century || '20') + '$3'));
                                     return returnValue(date);
@@ -70,8 +75,8 @@
                         element.attr('placeholder', '00/00/0000');
                         element.attr('maxlength', 10);
 
-                        controller.$formatters.unshift(formatValue);
-                        controller.$parsers.unshift(parseValue);
+                        controller.$formatters.push(formatValue);
+                        controller.$parsers.push(parseValue);
                     }
                 };
             }

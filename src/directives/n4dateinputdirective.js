@@ -18,13 +18,18 @@
                                     return '';
                                 }
 
-                                var numbers = value.replace(/\D/gi, ''),
-                                    regexp = new RegExp('^(\\d{2})(\\d{2})(\\d{2})$', 'gi'),
-                                    date,
+                                var numbers, regexp, date,
                                     returnValue = function (dateValue) {
                                         return isNaN(dateValue) ? '' : $filter('date')(dateValue, 'dd/MM/yyyy');
                                     };
 
+                                if (value instanceof Date) {
+                                    return returnValue(value);
+                                }
+
+                                numbers = value.replace(/\D/gi, '');
+
+                                regexp = new RegExp('^(\\d{2})(\\d{2})(\\d{2})$', 'gi');
                                 if (regexp.test(numbers)) {
                                     date = new Date(numbers.replace(regexp, '$2/$1/' + (attrs.century || '20') + '$3'));
                                     return returnValue(date);
@@ -41,24 +46,22 @@
                                     return returnValue(new Date(value));
                                 }
 
-                                return value === 'Invalid Date' ? '' : value;
+                                return value;
                             },
                             parseValue = function (value) {
                                 var formattedValue = formatValue(value),
                                     regexp = new RegExp('^(\\d{2})/(\\d{2})/(\\d{4})$', 'gi');
-                                if (regexp.test(formattedValue)) {
-                                    var date = new Date(formattedValue.replace(regexp, '$2/$1/$3'));
-                                    return isNaN(date) ? null : date;
-                                }
 
-                                return null;
+                                return regexp.test(formattedValue)
+                                    ? new Date(formattedValue.replace(regexp, '$2/$1/$3'))
+                                    : null;
                             };
 
                         element.attr('placeholder', '00/00/0000');
                         element.attr('maxlength', 10);
 
-                        controller.$formatters.unshift(formatValue);
-                        controller.$parsers.unshift(parseValue);
+                        controller.$formatters.push(formatValue);
+                        controller.$parsers.push(parseValue);
                     }
                 };
             }
