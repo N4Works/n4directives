@@ -6,8 +6,8 @@
             '$q',
             '$log',
             function ($q, $log) {
-                var N4Interceptor = function (defaultErrorMessage) {
-                    this.defaultErrorMessage = defaultErrorMessage || 'An error has occurred. Try again later.';
+                var N4Interceptor = function () {
+                    this.defaultErrorMessage = 'Serviço indisponível, tente novamente.';
                 };
 
                 N4Interceptor.prototype = {
@@ -21,9 +21,7 @@
                     }
                 };
 
-                return function (defaultErrorMessage) {
-                    return new N4Interceptor(defaultErrorMessage);
-                };
+                return new N4Interceptor();
             }]);
 
 }(window.angular));
