@@ -250,7 +250,6 @@
             '$log',
             function ($q, $log) {
                 var N4Interceptor = function () {
-                    this.defaultErrorMessage = 'Serviço indisponível, tente novamente.';
                 };
 
                 N4Interceptor.prototype = {
@@ -260,7 +259,7 @@
                         }
 
                         $log.error(rejection);
-                        return $q.reject(new TypeError(this.defaultErrorMessage));
+                        return $q.reject(new TypeError('Serviço indisponível, tente novamente.'));
                     }
                 };
 

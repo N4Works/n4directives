@@ -13,12 +13,6 @@
             service = n4Interceptor;
         }));
 
-        describe('Creation', function () {
-            it('Should set a default message for error', function () {
-                expect(service.defaultErrorMessage).toBe('Serviço indisponível, tente novamente.');
-            });
-        });
-
         describe('Functionality', function () {
             it('Should return an exception rejection with the data property value', function () {
                 service.responseError({ data: 'Exception message' }).catch(function (error) {
