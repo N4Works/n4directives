@@ -2,7 +2,7 @@
     angular
         .module('n4Directives.interceptor.usuario_nao_autenticado', [])
         .config(['$httpProvider', function($httpProvider) {
-            $httpProvider.interceptors.push('UsuarioNaoAutenticadoInterceptor');
+            $httpProvider.interceptors.unshift('UsuarioNaoAutenticadoInterceptor');
         }])
         .provider('UsuarioNaoAutenticadoInterceptor', [function() {
             var self = this;
