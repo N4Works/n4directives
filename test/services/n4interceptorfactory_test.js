@@ -5,27 +5,32 @@
     /*jslint nomen: true */
 
     describe('n4Interceptor', function () {
-        var service;
+        var _rootScope, service;
 
         beforeEach(module('n4Directives.interceptor'));
 
-        beforeEach(inject(function (n4Interceptor) {
+        beforeEach(inject(function ($rootScope, n4Interceptor) {
+            _rootScope = $rootScope;
             service = n4Interceptor;
         }));
 
         describe('Functionality', function () {
             it('Should return an exception rejection with the data property value', function () {
-                service.responseError({ data: 'Exception message' }).catch(function (error) {
-                    expect(error instanceof TypeError).toBeTruthy();
-                    expect(error.message).toBe('Exception message');
+                service.responseError({ status: 500, data: 'Exception message' }).catch(function (error) {
+                    expect(error.data).toBe('Exception message');
+                    expect(error.status).toBe(500);
                 });
+
+                _rootScope.$digest();
             });
 
             it('Should return an exception rejection with default error message', function () {
                 service.responseError({}).catch(function (error) {
-                    expect(error instanceof TypeError).toBeTruthy();
-                    expect(error.message).toBe('Serviço indisponível, tente novamente.');
+                    expect(error.data).toBe('Serviço indisponível, tente novamente.');
+                    expect(error.status).toBe(400);
                 });
+
+                _rootScope.$digest();
             });
         });
     });

@@ -255,12 +255,14 @@
 
                 N4Interceptor.prototype = {
                     responseError: function (rejection) {
+                        rejection.status = rejection.status || 400;
+
                         if (rejection.data) {
-                            return $q.reject(new TypeError(rejection.data));
+                            return $q.reject(rejection);
                         }
 
                         $log.error(rejection);
-                        return $q.reject(new TypeError('Serviço indisponível, tente novamente.'));
+                        return $q.reject({data: 'Serviço indisponível, tente novamente.', status: rejection.status});
                     }
                 };
 
