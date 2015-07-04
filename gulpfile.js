@@ -47,6 +47,16 @@
     /*jslint nomen: false */
   });
 
+  gulp.task('test-watch', function (done) {
+    /*jslint nomen: true */
+    karma.start({
+      configFile: __dirname + '/karma.conf.js',
+      singleRun: false,
+      browsers: ['PhantomJS']
+    }, done);
+    /*jslint nomen: false */
+  });
+
   gulp.task('coverage', ['test'], function (done) {
     gulp.src('coverage/**/lcov.info')
       .pipe(coveralls());

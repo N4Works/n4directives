@@ -6,7 +6,8 @@
         'n4Directives.dateInput',
         'n4Directives.notifications',
         'n4Directives.onBottom',
-        'n4Directives.interceptor'
+        'n4Directives.interceptor',
+        'n4Directives.interceptor.usuario_nao_autenticado'
     ]);
 
 }(window.angular));

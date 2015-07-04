@@ -5,6 +5,7 @@
   "main": "n4app.js",
   "scripts": {
     "test": "gulp test",
+    "tw": "gulp test-watch",
     "test-coverage": "gulp coverage"
   },
   "repository": {
