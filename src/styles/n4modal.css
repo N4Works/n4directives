@@ -1,0 +1,63 @@
+.n4-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9;
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.n4-modal .n4-modal-background {
+    width: inherit;
+    height: inherit;
+    background: rgba(0,0,0,0.7);
+}
+
+.n4-modal.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.n4-modal .n4-modal-container {
+    top: 3%;
+    transform: translateY(-100%);
+}
+
+.n4-modal.bottom .n4-modal-container {
+    top: auto;
+    bottom: 3%;
+    transform: translateY(100%);
+}
+
+.n4-modal .n4-modal-container {
+    position: fixed;
+    left: 3%;
+    width: 94%;
+    height: auto;
+    z-index: 10;
+    box-shadow: 0 0 5px 0px #555;
+    color: black;
+    visibility: hidden;
+    opacity: 0;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.n4-modal.visible .n4-modal-container {
+    box-shadow: 0 0 15px 0px #555;
+    transform: translateY(0%);
+    opacity: 1;
+    visibility: visible;
+}
