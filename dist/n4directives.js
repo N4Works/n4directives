@@ -246,6 +246,9 @@
     'use strict';
 
     angular.module('n4Directives.interceptor', [])
+        .config(['$httpProvider', function($httpProvider) {
+            $httpProvider.interceptors.push('n4Interceptor');
+        }])
         .factory('n4Interceptor', [
             '$q',
             '$log',
@@ -257,12 +260,12 @@
                     responseError: function (rejection) {
                         rejection.status = rejection.status || 400;
 
-                        if (rejection.data) {
-                            return $q.reject(rejection);
+                        if (!!rejection.data) {
+                            return $q.reject(angular.extend(new TypeError(rejection.data), { status: rejection.status }));
                         }
 
                         $log.error(rejection);
-                        return $q.reject({data: 'Serviço indisponível, tente novamente.', status: rejection.status});
+                        return $q.reject(angular.extend(new TypeError('Serviço indisponível, tente novamente.'), { status: rejection.status }));
                     }
                 };
 
@@ -350,13 +353,13 @@
 
             self.$get = ['$q', '$window', '$log', function($q, $window, $log) {
                 var sessaoExpirada = {
-                    responseError: function(rejeicao) {
-                        if (rejeicao.status === self.statusHttp) {
+                    responseError: function(rejection) {
+                        if (rejection.status === self.statusHttp) {
                             $log.error('Usuário năo autenticado.');
                             $window.location.replace(self.urlRedirecionamento);
                         }
 
-                        return $q.reject(rejeicao);
+                        return $q.reject(rejection);
                     }
                 };
 

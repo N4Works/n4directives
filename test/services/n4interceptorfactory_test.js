@@ -17,7 +17,8 @@
         describe('Functionality', function () {
             it('Should return an exception rejection with the data property value', function () {
                 service.responseError({ status: 500, data: 'Exception message' }).catch(function (error) {
-                    expect(error.data).toBe('Exception message');
+                    expect(error instanceof TypeError).toBeTruthy();
+                    expect(error.message).toBe('Exception message');
                     expect(error.status).toBe(500);
                 });
 
@@ -26,7 +27,8 @@
 
             it('Should return an exception rejection with default error message', function () {
                 service.responseError({}).catch(function (error) {
-                    expect(error.data).toBe('Serviço indisponível, tente novamente.');
+                    expect(error instanceof TypeError).toBeTruthy();
+                    expect(error.message).toBe('Serviço indisponível, tente novamente.');
                     expect(error.status).toBe(400);
                 });
 

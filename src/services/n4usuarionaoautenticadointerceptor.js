@@ -12,13 +12,13 @@
 
             self.$get = ['$q', '$window', '$log', function($q, $window, $log) {
                 var sessaoExpirada = {
-                    responseError: function(rejeicao) {
-                        if (rejeicao.status === self.statusHttp) {
+                    responseError: function(rejection) {
+                        if (rejection.status === self.statusHttp) {
                             $log.error('Usuário năo autenticado.');
                             $window.location.replace(self.urlRedirecionamento);
                         }
 
-                        return $q.reject(rejeicao);
+                        return $q.reject(rejection);
                     }
                 };
 
