@@ -90,7 +90,7 @@
  * # n4BtMenuDirective
  */
 
-(function (angular, $) {
+;(function (angular, $) {
     'use strict';
 
     angular.module('n4Directives.modal', [])
