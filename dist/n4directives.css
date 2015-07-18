@@ -84,6 +84,7 @@
     font-weight: normal;
     transition: all .2s ease;
     transform-origin: right;
+    margin:10px 10px 20px;
 }
 
 .notification.success {
@@ -158,8 +159,6 @@
         max-width: 300px;
         padding-left: 20px;
         max-height: 96%;
-        padding-top: 1%;
-        padding-bottom: 3%;
         box-shadow: none;
     }
     .notification {

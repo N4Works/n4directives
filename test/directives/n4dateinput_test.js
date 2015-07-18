@@ -47,6 +47,17 @@
                 expect(element[0].placeholder).toBe('00/00/0000');
                 expect(element[0].maxLength).toBe(10);
             });
+
+            it('Should be able to create directive defining a custom placeholder', function () {
+                var element = angular.element('<input n4-date-input="" data-ng-model="value" placeholder="dia/mês/ano">');
+                $compile(element)($scope);
+                $scope.$apply();
+
+                expect(angular.isDefined(element)).toBeTruthy();
+                expect(element[0].tagName).toBe('INPUT');
+                expect(element[0].placeholder).toBe('dia/mês/ano');
+                expect(element[0].maxLength).toBe(10);
+            });
         });
 
         describe('Functionality', function () {

@@ -72,7 +72,9 @@
                                     : null;
                             };
 
-                        element.attr('placeholder', '00/00/0000');
+                        if (!element.attr('placeholder')) {
+                            element.attr('placeholder', '00/00/0000');
+                        }
                         element.attr('maxlength', 10);
 
                         controller.$formatters.push(formatValue);
