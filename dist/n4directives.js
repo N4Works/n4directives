@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('n4Directives', [
+        'ngAnimate',
         'n4Directives.numberInput',
         'n4Directives.dateInput',
         'n4Directives.notifications',
